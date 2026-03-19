@@ -39,7 +39,7 @@ public class DogStep {
 
     @Then("valido a imagem aleatória retornada")
     public void valido_a_imagem_aleatoria_retornada() {
-        // implementar na Page
+        dog.validateAleatoryImage();
     }
 
     @Then("valido o retorno de erro para raça inválida")

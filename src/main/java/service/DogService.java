@@ -98,5 +98,19 @@ public class DogService {
         }
         ReportUtils.attachEvidence(response, Hooks.getScenarioName());
     }
+
+	public void validateAleatoryImage() {
+		ReportUtils.logInfo("validate aleatory image");
+		response.then().statusCode(200).log().all().extract().jsonPath();
+		
+		String status = response.jsonPath().getString("status");
+	    Assert.assertEquals("success", status);
+	    
+	    String img = response.jsonPath().getString("message");
+		MatcherAssert.assertThat(img, Matchers.endsWith(".jpg"));
+		System.out.println(" img: " + img + "\n");
+		
+		ReportUtils.attachEvidence(response, Hooks.getScenarioName());
+	}
 	
 }

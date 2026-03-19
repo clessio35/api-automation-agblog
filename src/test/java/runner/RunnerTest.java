@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
     features = "classpath:features", 
     glue = {"steps"},                 
     plugin = {"pretty"}, 
-     tags = "@breed-images",
+     tags = "@random",
     strict = true                      
 )
 public class RunnerTest {}
