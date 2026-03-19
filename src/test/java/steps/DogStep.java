@@ -7,29 +7,29 @@ import io.cucumber.java.en.Then;
 
 public class DogStep {
 	
-	DogService agi = new DogService();
+	DogService dog = new DogService();
 
     // ---------- GIVEN ----------
     @Given("que acesso a API {string}")
     public void que_acesso_a_api(String url) {
-       agi.accessApi(url);
+    	dog.accessApi(url);
     }
 
     // ---------- WHEN ----------
     @When("realizo uma request GET para {string}")
     public void realizo_uma_request_get_para(String endpoint) {
-        agi.sendRequestGETMethod(endpoint);
+    	dog.sendRequestGETMethod(endpoint);
     }
 
     // ---------- THEN ----------
     @Then("valido a listagem de raças")
     public void valido_a_listagem_de_racas() {
-       agi.validateCompleteDogsList();
+    	dog.validateCompleteDogsList();
     }
 
     @Then("valido as imagens da raça")
     public void valido_as_imagens_da_raca() {
-        // implementar na Page
+    	dog.validateCompleteImagesDogs();
     }
 
     @Then("valido a imagem aleatória retornada")

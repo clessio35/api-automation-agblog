@@ -1,8 +1,12 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 
 import hooks.Hooks;
@@ -50,6 +54,19 @@ public class DogService {
 		    System.out.println("status diferente do esperado ->: " + status);
 		}
 		ReportUtils.attachEvidence(response, Hooks.getScenarioName());
+	}
+
+	public void validateCompleteImagesDogs() {
+		ReportUtils.logInfo("Validate images dog");
+		response.then().statusCode(200).log().all().extract().jsonPath();
+		String status = response.jsonPath().getString("status");
+		Assert.assertEquals("success", status);
+		
+		List<String> images = response.jsonPath().getList("message");
+		MatcherAssert.assertThat(images, Matchers.not(Matchers.empty()));
+		for(String imageUrl : images) {
+			MatcherAssert.assertThat(imageUrl, Matchers.startsWith("https://"));
+		}
 	}
 	
 }

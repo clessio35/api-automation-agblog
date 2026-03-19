@@ -15,7 +15,7 @@ Feature: Testes de API - Dog API
     When realizo uma request GET para "<endpoint>"
     Then valido as imagens da raça
     Examples:
-      | url                  | endpoint             |
+      | url               				   | endpoint             |
       | https://dog.ceo/api  | /breed/hound/images  |
 
   @random
