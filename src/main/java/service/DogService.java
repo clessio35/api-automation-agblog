@@ -112,5 +112,21 @@ public class DogService {
 		
 		ReportUtils.attachEvidence(response, Hooks.getScenarioName());
 	}
+
+	public void validateInvalidRequest() {
+		ReportUtils.logInfo("validate invalid request");
+		response.then().statusCode(404).log().all().extract().jsonPath();
+		
+		String status = response.jsonPath().getString("status");
+	    Assert.assertEquals("error", status);
+	    
+	    String message = response.jsonPath().getString("message");
+	    Assert.assertEquals("Breed not found (main breed does not exist)", message);
+	    
+	    Integer code = response.jsonPath().getInt("code");
+	    MatcherAssert.assertThat(code, Matchers.equalTo(404));
+		
+	    ReportUtils.attachEvidence(response, Hooks.getScenarioName());
+	}
 	
 }

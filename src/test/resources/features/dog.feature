@@ -6,8 +6,8 @@ Feature: Testes de API - Dog API
     When realizo uma request GET para "<endpoint>"
     Then valido a listagem de raças
     Examples:
-      | url                  | endpoint           |
-      | https://dog.ceo/api  | /breeds/list/all   |
+      | url         			          | endpoint          	 |
+      | https://dog.ceo/api  | /breeds/list/all    |
 
   @breed-images
   Scenario Outline: Buscar imagens por raça
@@ -16,7 +16,7 @@ Feature: Testes de API - Dog API
     Then valido as imagens da raça
     Examples:
       | url               				   | endpoint             |
-      | https://dog.ceo/api  | /breed/ |
+      | https://dog.ceo/api   | /breed/ 				 |
 
   @random
   Scenario Outline: Buscar imagem aleatória
@@ -24,8 +24,8 @@ Feature: Testes de API - Dog API
     When realizo uma request GET para "<endpoint>"
     Then valido a imagem aleatória retornada
     Examples:
-      | url                  | endpoint               |
-      | https://dog.ceo/api  | /breeds/image/random   |
+      | url              				  | endpoint       		     		   |
+      | https://dog.ceo/api  | /breeds/image/random    |
 
   @negative
   Scenario Outline: Buscar raça inexistente
@@ -33,5 +33,5 @@ Feature: Testes de API - Dog API
     When realizo uma request GET para "<endpoint>"
     Then valido o retorno de erro para raça inválida
     Examples:
-      | url                  | endpoint                     |
-      | https://dog.ceo/api  | /breed/invalidbreed/images   |
+      | url                			  | endpoint              				       |
+      | https://dog.ceo/api  | /breed/invalidbreed/images    |

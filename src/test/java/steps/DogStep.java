@@ -44,6 +44,6 @@ public class DogStep {
 
     @Then("valido o retorno de erro para raça inválida")
     public void valido_o_retorno_de_erro_para_raca_invalida() {
-        // implementar na Page
+       dog.validateInvalidRequest();
     }
 }
