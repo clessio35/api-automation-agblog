@@ -48,15 +48,14 @@ public class ReportUtils {
         }
     }
 
+    // Anexa evidência em PDF gerada pelo EvidenceUtils
     public static void attachEvidence(Response response, String scenarioName) {
         try {
             String pdfPath = EvidenceUtils.takeScreenshot(response, scenarioName);
 
-            // Caminho absoluto do relatório e do pdf
             File reportFile = new File("reports/ExtentReport.html");
             File pdfFile = new File(pdfPath);
 
-            // Calcula caminho relativo do PDF para o relatório
             String relativePath = reportFile.getParentFile().toURI().relativize(pdfFile.toURI()).getPath();
 
             if (test != null) {
