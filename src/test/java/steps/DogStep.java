@@ -26,6 +26,11 @@ public class DogStep {
     public void valido_a_listagem_de_racas() {
     	dog.validateCompleteDogsList();
     }
+    
+    @When("realizo uma request GET especifica para {string}")
+    public void realizo_uma_request_get_especifica_para(String endpoint) {
+    	dog.sendRequestGETMethodWithSpecificBreed(endpoint);
+    }
 
     @Then("valido as imagens da raça")
     public void valido_as_imagens_da_raca() {

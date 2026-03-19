@@ -24,12 +24,12 @@ public class EvidenceUtils {
      */
     public static String takeScreenshot(Response response, String scenarioName) throws IOException {
 
+        // Timestamp
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String timestamp = formatter.format(LocalDateTime.now());
+        String fileTimestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss"));
 
-        String fileTimestamp = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss"));
-
+        // Sanitiza nome para pasta/arquivo
         String sanitizedName = sanitizeFileName(
                 scenarioName != null ? scenarioName : "unknown_scenario"
         );
@@ -58,38 +58,23 @@ public class EvidenceUtils {
                 .setFontSize(18)
                 .setFontColor(isSuccess ? ColorConstants.GREEN : ColorConstants.RED)
                 .setTextAlignment(TextAlignment.CENTER);
-
         document.add(header);
-
         document.add(new Paragraph("\n"));
 
         // Informações gerais
-        document.add(new Paragraph("Scenario: " + scenarioName)
-                .setFont(bold).setFontSize(14));
-
-        document.add(new Paragraph("Date: " + timestamp)
-                .setFont(regular).setFontSize(12));
-
-        document.add(new Paragraph("Status Code: " + response.getStatusCode())
-                .setFont(regular).setFontSize(12));
-
+        document.add(new Paragraph("Scenario: " + scenarioName).setFont(bold).setFontSize(14));
+        document.add(new Paragraph("Date: " + timestamp).setFont(regular).setFontSize(12));
+        document.add(new Paragraph("Status Code: " + response.getStatusCode()).setFont(regular).setFontSize(12));
         document.add(new Paragraph("\n"));
 
         // Body
-        document.add(new Paragraph("Response Body:")
-                .setFont(bold).setFontSize(13));
-
-        document.add(new Paragraph(response.getBody().asPrettyString())
-                .setFont(regular).setFontSize(11));
-
+        document.add(new Paragraph("Response Body:").setFont(bold).setFontSize(13));
+        document.add(new Paragraph(response.getBody().asPrettyString()).setFont(regular).setFontSize(11));
         document.add(new Paragraph("\n"));
 
         // Headers
-        document.add(new Paragraph("Headers:")
-                .setFont(bold).setFontSize(13));
-
-        document.add(new Paragraph(response.getHeaders().toString())
-                .setFont(regular).setFontSize(11));
+        document.add(new Paragraph("Headers:").setFont(bold).setFontSize(13));
+        document.add(new Paragraph(response.getHeaders().toString()).setFont(regular).setFontSize(11));
 
         document.close();
 
@@ -99,7 +84,7 @@ public class EvidenceUtils {
     }
 
     /**
-     * Sanitiza nome de arquivo
+     * Sanitiza nome de arquivo/pasta
      */
     private static String sanitizeFileName(String fileName) {
         return fileName

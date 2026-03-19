@@ -12,11 +12,11 @@ Feature: Testes de API - Dog API
   @breed-images
   Scenario Outline: Buscar imagens por raça
     Given que acesso a API "<url>"
-    When realizo uma request GET para "<endpoint>"
+    When realizo uma request GET especifica para "<endpoint>"
     Then valido as imagens da raça
     Examples:
       | url               				   | endpoint             |
-      | https://dog.ceo/api  | /breed/hound/images  |
+      | https://dog.ceo/api  | /breed/ |
 
   @random
   Scenario Outline: Buscar imagem aleatória

@@ -3,27 +3,27 @@ package hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import utils.ReportUtils;
 
 public class Hooks {
 
-	 private static ThreadLocal<String> scenarioName = new ThreadLocal<>();
+    private static ThreadLocal<Scenario> scenarioThread = new ThreadLocal<>();
 
-	    @Before
-	    public void before(Scenario scenario) {
-	        String name = scenario.getName();
-	        scenarioName.set(name);
-	        System.out.println(">>>>> Hook executado - cenário: " + name);
+    @Before
+    public void before(Scenario scenario) {
+        scenarioThread.set(scenario); 
+    }
 
-	        ReportUtils.createTest(name);
-	    }
+    @After
+    public void after(Scenario scenario) {
+        scenarioThread.remove();
+    }
 
-	    @After
-	    public void after(Scenario scenario) {
-	        scenarioName.remove();
-	    }
+    public static Scenario getScenario() {
+        return scenarioThread.get();
+    }
 
-	    public static String getScenarioName() {
-	        return scenarioName.get();
-	    }
+    public static String getScenarioName() {
+        Scenario scenario = scenarioThread.get();
+        return scenario != null ? scenario.getName() : "unknown_scenario";
+    }
 }
