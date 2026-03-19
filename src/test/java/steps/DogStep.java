@@ -24,7 +24,7 @@ public class DogStep {
     // ---------- THEN ----------
     @Then("valido a listagem de raças")
     public void valido_a_listagem_de_racas() {
-        // implementar na Page
+       agi.validateCompleteDogsList();
     }
 
     @Then("valido as imagens da raça")
