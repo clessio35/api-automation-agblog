@@ -1,4 +1,4 @@
-name: Run API Dummy
+name: Run API Dog
 
 on:
   push:
